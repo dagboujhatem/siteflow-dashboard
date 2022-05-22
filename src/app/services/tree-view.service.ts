@@ -14,4 +14,20 @@ export class TreeViewService {
   getNodes(){
     return this.http.get(`${this.baseURL}/nodes`);
   }
+
+  createNewNode(data: any){
+    return this.http.post(`${this.baseURL}/nodes`, data);
+  }
+
+  getNodeByID(id:number){
+    return this.http.get(`${this.baseURL}/nodes/${id}`);
+  }
+
+  updateNodeByID(id:number, data:any){
+    return this.http.put(`${this.baseURL}/nodes/${id}`, data);
+  }
+
+  deleteNodeByID(id:number){
+    return this.http.delete(`${this.baseURL}/nodes/${id}`);
+  }
 }

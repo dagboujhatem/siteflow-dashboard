@@ -10,6 +10,8 @@ import { Page404Component } from './components/page404/page404.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DragulaModule } from 'ng2-dragula';
+import { AddNodeComponent } from './components/add-node/add-node.component';
+import { UpdateNodeComponent } from './components/update-node/update-node.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { DragulaModule } from 'ng2-dragula';
     TreeViewComponent,
     NavBarComponent,
     FooterComponent,
-    Page404Component
+    Page404Component,
+    AddNodeComponent,
+    UpdateNodeComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,7 @@ import { DragulaModule } from 'ng2-dragula';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    // DragulaModule.forRoot()
+    DragulaModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,31 @@
+<div class="row my-5">
+    <h1 class="text-center text-primary mt-5">Update node</h1>
+    <form *ngIf="nodeForm" [formGroup]="nodeForm" (ngSubmit)="updateNode()" class="offset-md-3 col-md-6">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="name" placeholder="Type the name here"
+            formControlName="name" [ngClass]="{ 'is-invalid': submitted && nodeForm.get('name')?.errors,
+            'is-valid': submitted && !nodeForm.get('name')?.errors }">
+            <div *ngIf="submitted && nodeForm.get('name')?.hasError('required')" class="invalid-feedback">
+                The name is required.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea class="form-control" id="description" rows="3"
+            formControlName="name" [ngClass]="{ 'is-invalid': submitted && nodeForm.get('description')?.errors,
+            'is-valid': submitted && !nodeForm.get('description')?.errors }"></textarea>
+            <div *ngIf="submitted && nodeForm.get('description')?.hasError('required')" class="invalid-feedback">
+                The description is required.
+            </div>
+        </div>
+        <div class="float-end">
+            <button type="button" class="btn btn-secondary" routerLink="/tree-view">
+                <i class="fa fa-arrow-left"></i> Back
+            </button>
+            <button type="submit" class="btn btn-success ms-2">
+                <i class="fa fa-save"></i> Update node
+            </button>
+        </div>
+    </form>
+</div>
