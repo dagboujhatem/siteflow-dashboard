@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DragulaModule } from 'ng2-dragula';
 import { AddNodeComponent } from './components/add-node/add-node.component';
 import { UpdateNodeComponent } from './components/update-node/update-node.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UpdateNodeComponent } from './components/update-node/update-node.compon
     FooterComponent,
     Page404Component,
     AddNodeComponent,
-    UpdateNodeComponent
+    UpdateNodeComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

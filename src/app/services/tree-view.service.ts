@@ -11,7 +11,7 @@ export class TreeViewService {
 
   constructor(private http: HttpClient) { }
 
-  getNodes(){
+  getAllNodes(){
     return this.http.get(`${this.baseURL}/nodes`);
   }
 

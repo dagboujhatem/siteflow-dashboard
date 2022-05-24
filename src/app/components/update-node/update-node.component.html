@@ -12,8 +12,8 @@
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description:</label>
-            <textarea class="form-control" id="description" rows="3"
-            formControlName="name" [ngClass]="{ 'is-invalid': submitted && nodeForm.get('description')?.errors,
+            <textarea class="form-control" id="description" rows="3" placeholder="Type the description here"
+            formControlName="description" [ngClass]="{ 'is-invalid': submitted && nodeForm.get('description')?.errors,
             'is-valid': submitted && !nodeForm.get('description')?.errors }"></textarea>
             <div *ngIf="submitted && nodeForm.get('description')?.hasError('required')" class="invalid-feedback">
                 The description is required.

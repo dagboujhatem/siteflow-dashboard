@@ -29,7 +29,7 @@ export class UpdateNodeComponent implements OnInit {
   loadNodeData(){
     this.treeViewService.getNodeByID(this.id)
     .subscribe((response:any)=>{
-      this.nodeForm?.patchValue(response);
+      this.nodeForm?.patchValue(response?.result);
     }, (error:any)=>{
       console.log(error);
     });

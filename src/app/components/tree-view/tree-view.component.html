@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <div class="wrapper">
       <div class="container" dragula="DRAGULA_FACTS">
         <div>You can move these elements between these two containers</div>
@@ -9,6 +9,30 @@
         <div>This is the default use case. You only need to specify the containers you want to use</div>
         <div>More interactive use cases lie ahead</div>
         <div>Make sure to check out the <a href="https://github.com/bevacqua/dragula#readme">documentation on GitHub!</a></div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="row">
+    <div class="offset-md-2 col-md-8 my-5">
+      <h1 class="text-center text-primary mt-5">Nodes list</h1>
+      <p class="text-center h4 text-danger">Drag and drop any item</p>
+      <div class="mb-3"> 
+        <input type="search" class="form-control" id="searchText" placeholder="Search ...."
+        [(ngModel)]="searchQuery">
+      </div>
+      <div class="wrapper">
+        <div class="row container" dragula="DRAGULA_FACTS">
+          <div *ngFor="let node of nodeData | search : searchQuery" class="col-md-12"> 
+            <h1>{{node?.name}}</h1>
+            <button [routerLink]="['/update-node', node?.id]" class="btn btn-primary">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button (click)="deleteNodeById(node?.id)" class="btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
