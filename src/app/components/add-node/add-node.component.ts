@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { TreeViewService } from 'src/app/services/tree-view.service';
 
 @Component({
@@ -11,12 +12,18 @@ import { TreeViewService } from 'src/app/services/tree-view.service';
 export class AddNodeComponent implements OnInit {
   submitted = false;
   nodeForm?:FormGroup;
-  constructor(private treeViewService: TreeViewService, private router:Router) { }
+  constructor(private treeViewService: TreeViewService,
+    private router:Router,
+    private toasterService: ToastrService,
+    private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
+    const nodeParam = this.activatedRoute.snapshot.params['parentNode'];
+    const parentNode = nodeParam ? nodeParam : -1;
     this.nodeForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required])
+      description: new FormControl('', [Validators.required]),
+      parentNode: new FormControl(parentNode)
     });
   }
 
@@ -28,6 +35,7 @@ export class AddNodeComponent implements OnInit {
     }
     this.treeViewService.createNewNode(this.nodeForm?.value)
     .subscribe((response:any)=>{
+      this.toasterService.success('Node has been added successfully.', '');
       this.router.navigateByUrl('/tree-view');
     }, (error:any)=>{
       console.log(error);

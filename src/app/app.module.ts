@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { DragulaModule } from 'ng2-dragula';
 import { AddNodeComponent } from './components/add-node/add-node.component';
 import { UpdateNodeComponent } from './components/update-node/update-node.component';
 import { SearchPipe } from './pipes/search.pipe';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -27,10 +29,12 @@ import { SearchPipe } from './pipes/search.pipe';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    ToastrModule.forRoot(),
     DragulaModule.forRoot()
   ],
   providers: [],

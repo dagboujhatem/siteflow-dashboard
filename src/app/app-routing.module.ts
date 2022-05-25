@@ -20,6 +20,10 @@ const routes: Routes = [
     component: AddNodeComponent
   },
   {
+    path:'add-new-node/:parentNode',
+    component: AddNodeComponent
+  },
+  {
     path:'update-node/:id',
     component: UpdateNodeComponent
   },

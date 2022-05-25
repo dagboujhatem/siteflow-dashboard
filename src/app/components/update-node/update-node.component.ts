@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { TreeViewService } from 'src/app/services/tree-view.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class UpdateNodeComponent implements OnInit {
 
   constructor(private treeViewService: TreeViewService,
     private router:Router,
-    private activatedRoute:ActivatedRoute) { }
+    private activatedRoute:ActivatedRoute,
+    private toasterService: ToastrService) { }
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params['id'];
@@ -43,6 +45,7 @@ export class UpdateNodeComponent implements OnInit {
     }
     this.treeViewService.updateNodeByID(this.id, this.nodeForm?.value)
     .subscribe((response:any)=>{
+      this.toasterService.success('Node has been updated successfully.', '');
       this.router.navigateByUrl('/tree-view');
     }, (error:any)=>{
       console.log(error);
