@@ -1,18 +1,3 @@
-<!-- <div>
-    <div class="wrapper">
-      <div class="container" dragula="DRAGULA_FACTS">
-        <div>You can move these elements between these two containers</div>
-        <div>Moving them anywhere else isn't quite possible</div>
-        <div>There's also the possibility of moving elements around in the same container, changing their position</div>
-      </div>
-      <div class="container" dragula="DRAGULA_FACTS">
-        <div>This is the default use case. You only need to specify the containers you want to use</div>
-        <div>More interactive use cases lie ahead</div>
-        <div>Make sure to check out the <a href="https://github.com/bevacqua/dragula#readme">documentation on GitHub!</a></div>
-      </div>
-    </div>
-  </div> -->
-
   <div class="row">
     <div class="offset-md-2 col-md-8 my-5">
       <h1 class="text-center text-primary mt-5">Nodes list</h1>
@@ -31,7 +16,7 @@
         <span class="visually-hidden">Loading...</span>
       </div>
       <div class="wrapper" *ngIf="nodeData?.length != 0">
-        <div class="" [dragula]="nodeGroup" [(dragulaModel)]="nodeData">
+        <div [dragula]="nodeGroup" [(dragulaModel)]="nodeData">
           <div *ngFor="let node of nodeData | search : searchQuery; let i = index"
           (mouseenter)="enter(i)" (mouseleave)="leave(i)"
           class="card my-3"> 
