@@ -20,10 +20,13 @@ export class AddNodeComponent implements OnInit {
   ngOnInit(): void {
     const nodeParam = this.activatedRoute.snapshot.params['parentNode'];
     const parentNode = nodeParam ? nodeParam : -1;
+    const positionParam = this.activatedRoute.snapshot.params['position'];
+    const position = positionParam ? positionParam : -1;
     this.nodeForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      parentNode: new FormControl(parentNode)
+      parentNode: new FormControl(parentNode),
+      position: new FormControl(position)
     });
   }
 

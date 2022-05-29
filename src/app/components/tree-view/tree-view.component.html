@@ -23,6 +23,9 @@
             <div class="card-header drag d-flex justify-content-between">
               <h2>{{node?.name}}</h2>
               <div *ngIf="hoverIndex == i">
+                <button [routerLink]="['/add-new-node', node?.id, node?.position]" class="btn btn-success btn-sm me-1">
+                  <i class="fa fa-plus"></i>
+                </button>
                 <button [routerLink]="['/add-new-node', node?.id]" class="btn btn-success btn-sm me-1">
                   <i class="fa fa-leaf"></i>
                 </button>
