@@ -37,7 +37,7 @@
             <div [ngClass]="{'card-body': node?.children?.length === 0}">
               <div class="row" *ngIf="node?.children?.length === 0">                
                 <span class="text-center">
-                  No children node found.
+                  No child nodes found. Drag any item below this text to save it.
                 </span>
               </div>
               <ul class="list-group list-group-flush" [dragula]="subNodeGroup" [(dragulaModel)]="node.children">
