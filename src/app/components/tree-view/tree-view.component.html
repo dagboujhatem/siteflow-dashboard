@@ -31,21 +31,43 @@
         <span class="visually-hidden">Loading...</span>
       </div>
       <div class="wrapper" *ngIf="nodeData?.length != 0">
-        <div class="row container" dragula="DRAGULA_FACTS">
+        <div class="" [dragula]="nodeGroup" [(dragulaModel)]="nodeData">
           <div *ngFor="let node of nodeData | search : searchQuery; let i = index"
           (mouseenter)="enter(i)" (mouseleave)="leave(i)"
-          class="item col-md-12 d-flex justify-content-between"> 
-            <h1>{{node?.name}}</h1>
-            <div *ngIf="hoverIndex == i">
-              <button [routerLink]="['/add-new-node', node?.id]" class="btn btn-success btn-sm me-1">
-                <i class="fa fa-plus"></i>
-              </button>
-              <button [routerLink]="['/update-node', node?.id]" class="btn btn-primary btn-sm me-1">
-                <i class="fa fa-edit"></i>
-              </button>
-              <button (click)="deleteNodeById(node?.id)" class="btn btn-danger btn-sm">
-                <i class="fa fa-trash"></i>
-              </button>
+          class="card my-3"> 
+            <div class="card-header d-flex justify-content-between">
+              <h2>{{node?.name}}</h2>
+              <div *ngIf="hoverIndex == i">
+                <button [routerLink]="['/add-new-node', node?.id]" class="btn btn-success btn-sm me-1">
+                  <i class="fa fa-plus"></i>
+                </button>
+                <button [routerLink]="['/update-node', node?.id]" class="btn btn-primary btn-sm me-1">
+                  <i class="fa fa-edit"></i>
+                </button>
+                <button (click)="deleteNodeById(node?.id)" class="btn btn-danger btn-sm">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </div>
+            <div >
+              <ul class="list-group list-group-flush" [dragula]="subNodeGroup" [(dragulaModel)]="node.children">
+                <li class="list-group-item" *ngFor="let childrenNode of node.children">
+                  <div class="d-flex justify-content-between">
+                    <p>{{ childrenNode?.name}}</p>
+                    <div>
+                      <button [routerLink]="['/update-node', childrenNode?.id]" class="btn btn-primary btn-sm me-1">
+                        <i class="fa fa-edit"></i>
+                      </button>
+                      <button (click)="deleteNodeById(childrenNode?.id)" class="btn btn-danger btn-sm">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <div *ngIf="node.children.length === 0" class="text-center" style="height: 50px;">
+                      No children node found.
+                </div>        
+              </ul>
             </div>
           </div>
         </div>

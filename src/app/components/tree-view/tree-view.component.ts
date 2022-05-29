@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DragulaService } from 'ng2-dragula';
 import { ToastrService } from 'ngx-toastr';
 import { TreeViewService } from 'src/app/services/tree-view.service';
 
@@ -8,15 +9,26 @@ import { TreeViewService } from 'src/app/services/tree-view.service';
   styleUrls: ['./tree-view.component.css']
 })
 export class TreeViewComponent implements OnInit {
-  nodeData?: any[];
+  nodeData: any[] = [];
   searchQuery: any="";
   loading = false;
   hoverIndex:any = -1;
+  nodeGroup = "nodes";
+  subNodeGroup = "subNodes";
+
   constructor(private treeViewService: TreeViewService,
-    private toasterService: ToastrService) { }
+    private toasterService: ToastrService,
+    private dragulaService: DragulaService) { }
 
   ngOnInit(): void {
     this.loadAllNodes();
+    this.dragulaService.createGroup(this.nodeGroup, {
+      direction: "horizontal",
+      removeOnSpill: true,
+      moves: (el, source, target:any) => {
+        return target.classList.contains("card-header");
+      },
+    });
   }
 
   loadAllNodes(){
