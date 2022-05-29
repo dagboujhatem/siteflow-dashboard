@@ -35,6 +35,9 @@
               </div>
             </div>
             <div class="card-body">
+              <span *ngIf="node?.children?.length === 0">
+                No children node found.
+              </span>
               <ul class="list-group list-group-flush" [dragula]="subNodeGroup" [(dragulaModel)]="node.children">
                 <li class="list-group-item drag" *ngFor="let childrenNode of node.children">
                   <div class="d-flex justify-content-between">
@@ -49,8 +52,7 @@
                     </div>
                   </div>
                 </li>
-                <div *ngIf="node.children.length === 0" class="text-center" style="height: 50px;">
-                      No children node found.
+                <div *ngIf="node.children.length === 0" style="height: 50px;">
                 </div>        
               </ul>
             </div>
