@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
 import { ToastrService } from 'ngx-toastr';
 import { TreeViewService } from 'src/app/services/tree-view.service';
@@ -8,7 +8,7 @@ import { TreeViewService } from 'src/app/services/tree-view.service';
   templateUrl: './tree-view.component.html',
   styleUrls: ['./tree-view.component.css']
 })
-export class TreeViewComponent implements OnInit {
+export class TreeViewComponent implements OnInit, OnDestroy {
   nodeData: any[] = [];
   searchQuery: any = "";
   loading = false;
@@ -65,4 +65,8 @@ export class TreeViewComponent implements OnInit {
     this.hoverIndex = null;
   }
 
+  ngOnDestroy() {
+    // this.dragulaSubscription.unsubscribe();
+    this.dragulaService.destroy(this.nodeGroup);
+  }
 }
