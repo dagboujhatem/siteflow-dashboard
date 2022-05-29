@@ -34,10 +34,12 @@
                 </button>
               </div>
             </div>
-            <div class="card-body">
-              <span *ngIf="node?.children?.length === 0">
-                No children node found.
-              </span>
+            <div [ngClass]="{'card-body': node?.children?.length === 0}">
+              <div class="row" *ngIf="node?.children?.length === 0">                
+                <span class="text-center">
+                  No children node found.
+                </span>
+              </div>
               <ul class="list-group list-group-flush" [dragula]="subNodeGroup" [(dragulaModel)]="node.children">
                 <li class="list-group-item drag" *ngFor="let childrenNode of node.children">
                   <div class="d-flex justify-content-between">
