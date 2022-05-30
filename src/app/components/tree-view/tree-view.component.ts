@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { TreeViewService } from 'src/app/services/tree-view.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
   hoverIndex: any = -1;
   nodeGroup = "nodes";
   subNodeGroup = "subNodes";
+  dragulaSubscription = new Subscription();
 
   constructor(private treeViewService: TreeViewService,
     private toasterService: ToastrService,
@@ -22,6 +24,7 @@ export class TreeViewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadAllNodes();
+    this.createDragulaSubscription();
     this.dragulaService.createGroup(this.nodeGroup, {
       direction: "horizontal",
       removeOnSpill: true,
@@ -65,8 +68,20 @@ export class TreeViewComponent implements OnInit, OnDestroy {
     this.hoverIndex = null;
   }
 
+  private createDragulaSubscription() {
+    this.dragulaService.dropModel(this.nodeGroup).subscribe((args: any) => {
+      this.treeViewService.saveOrderNode(args?.item?.id, args?.item?.position, args?.sourceIndex, args?.targetIndex)
+          .subscribe((response: any) => {
+            this.toasterService.success('Order has been deleted successfully.', '');
+            this.nodeData = response?.result;
+          }, (error: any) => {
+            console.log(error);
+          });
+    });
+  }
+
   ngOnDestroy() {
-    // this.dragulaSubscription.unsubscribe();
+    this.dragulaSubscription.unsubscribe();
     this.dragulaService.destroy(this.nodeGroup);
   }
 }

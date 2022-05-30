@@ -32,6 +32,10 @@ export class TreeViewService {
     return this.http.delete(`${this.baseURL}/nodes/${id}`);
   }
 
+  saveOrderNode(id:any, position:any,targetIndex:any, sourceIndex: any){
+    return this.http.put(`${this.baseURL}/nodes/${id}/save-order/${position}/${targetIndex}/${sourceIndex}`,{});
+  }
+
   deleteConfirmation()
   {
     return Swal.fire({
